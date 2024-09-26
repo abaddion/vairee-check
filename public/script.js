@@ -13,6 +13,10 @@ function checkResume() {
     const formData = new FormData();
     formData.append('resume', file);
 
+    const checkButton = document.getElementById('checkResumeBtn');
+    checkButton.textContent = 'Processing...';
+    checkButton.disabled = true;
+
     fetch('/analyze-resume', {
         method: 'POST',
         body: formData
@@ -20,17 +24,25 @@ function checkResume() {
     .then(response => response.json())
     .then(data => {
         document.getElementById('result').innerHTML = data.analysis;
-        document.querySelector('button[onclick="improveResume()"]').style.display = 'block';
+        document.getElementById('improveResumeBtn').style.display = 'block';
         analysis = data.analysis;
         updateVisitorCount();
     })
     .catch(error => {
         console.error('Error:', error);
         document.getElementById('result').innerHTML = 'An error occurred while processing the resume.';
+    })
+    .finally(() => {
+        checkButton.textContent = 'Check My Resume';
+        checkButton.disabled = false;
     });
 }
 
 function improveResume() {
+    const improveButton = document.getElementById('improveResumeBtn');
+    improveButton.textContent = 'Processing...';
+    improveButton.disabled = true;
+
     fetch('/improve-resume', {
         method: 'POST',
         headers: {
@@ -40,18 +52,35 @@ function improveResume() {
     })
     .then(response => response.json())
     .then(data => {
-        // Update the improvements div with the received data
         document.getElementById('improvements').innerHTML = data.improvements;
-
-        // Show the improvements div
         document.getElementById('improvements').style.display = 'block';
     })
     .catch(error => {
         console.error('Error:', error);
-        // Display the error message and show the improvements div
         document.getElementById('improvements').innerHTML = 'An error occurred while improving the resume.';
         document.getElementById('improvements').style.display = 'block';
+    })
+    .finally(() => {
+        improveButton.textContent = 'Improve My Resume';
+        improveButton.disabled = false;
     });
+}
+
+function toggleLearnMore() {
+    const content = document.getElementById('learnMoreContent');
+    const arrow = document.querySelector('.learn-more-box h3 .arrow');
+    const h3 = document.querySelector('.learn-more-box h3');
+    
+    content.classList.toggle('show');
+    arrow.style.transform = content.classList.contains('show') ? 'rotate(180deg)' : 'rotate(0deg)';
+    
+    if (content.classList.contains('show')) {
+        h3.firstChild.textContent = 'IMPORTANT';
+        content.style.display = 'block';
+    } else {
+        h3.firstChild.textContent = 'Want to learn more? ';
+        setTimeout(() => { content.style.display = 'none'; }, 300); // Match this to your transition time
+    }
 }
 
 function showModal() {

@@ -11,15 +11,39 @@
     <div id="visitor-count-container">
         <span id="visitor-count">total resumes checked: <span id="count">loading...</span></span>
     </div>
-    <h1>Resume <span class="orange">Read</span>Check</span></h1>
+    <h1>Resume <span class="orange">READ</span>Check</span></h1>
+    <h2>see how recruiters read your resume</h2>
     <div class="input-group">
         <label for="resume">Upload your resume (PDF, DOC, or DOCX):</label>
         <input type="file" id="resume" accept=".pdf,.doc,.docx">
     </div>
-    <button onclick="checkResume()">Check My Resume</button>
+    <button id="checkResumeBtn" onclick="checkResume()">Check My Resume</button>
     <div id="result"></div>
-    <button onclick="improveResume()" style="display:none;">Improve My Resume</button>
+    <button id="improveResumeBtn" onclick="improveResume()" style="display:none;">Improve My Resume</button>
     <div id="improvements" style="display:none;"></div>
+    
+    <div class="learn-more-container">
+        <div class="learn-more-box">
+            <h3 onclick="toggleLearnMore()">Want to learn more? <span class="arrow">▼</span></h3>
+            <div id="learnMoreContent" style="display:none;">
+                <div class="important-note">
+                    always update your resume for every job you apply to ...
+                </div>
+               <p>This demo shows how AI can help, but it’s just a basic example — and like any tool, AI has its limitations.</p> 
+               <p>At vairee, we've taken it to the next level. Our app is powered by AI that's been rigorously trained by industry-leading recruiters, ensuring your resume receives expert-level analysis and insights. With deeper understanding and personalized feedback, our AI doesn't just spot mistakes — it helps you refine your resume for real-world success.</p>
+               <p>Keep in mind, the AI works with the information you give it. If your resume doesn’t show your true career goals, it won’t know how to help.</p>
+               <p><strong>Stop spending money on expensive resume consultants—<em>for a limited time, vairee is FREE</em>! Try our <a href="https://standoutcv.vairee.ai/" target="_blank">advanced AI-powered solution</a> now and see how it can help boost your career. But that's just the beginning! Future updates will offer even more:</strong></p>
+   <ul>
+       <li>Tailoring your resume to specific job descriptions</li>
+       <li>Crafting personalized motivation letters</li>
+       <li>Preparing you for interviews</li>
+       <li>Navigating job offer negotiations</li>
+       <li>Setting and achieving long-term career goals</li>
+   </ul>
+   <p><strong>Don't miss out on this opportunity—give <a href="https://standoutcv.vairee.ai/" target="_blank">vairee</a> a try today and see how we can help you succeed!</strong></p>
+            </div>
+        </div>
+    </div>
 
     <div id="privacyModal" class="modal" style="display:none;">
         <div class="modal-content">
