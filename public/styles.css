@@ -1,0 +1,269 @@
+/* Reset some default styles */
+body, h1, p, input, label, button {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Body Style */
+body {
+    background: radial-gradient(circle, #1A1E2B, #212C3C, #1B1E2C);
+    color: white;
+    font-size: 18px;
+    letter-spacing: 1.5px;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.orange {
+    color: #FA8714;
+}   
+
+#visitor-count {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px; 
+    font-weight: 300;
+    margin-top: 50px;
+}
+  
+#count {
+    color: gray;
+    font-size: 42px;
+    font-weight: 500;
+}
+
+/* Heading Style */
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 64px;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 80px;
+    letter-spacing: 1.5px;
+}
+
+/* Input Group Styling */
+.input-group {
+    background-color: rgba(26, 30, 43, 0.8);
+    border-radius: 25px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(7px);
+    width: 80%;
+    max-width: 600px;
+}
+
+label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="file"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Button Styles */
+button {
+    background-color: #FA8714;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 15px;
+    padding: 15px 30px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+button:hover {
+    background-color: white;
+    color: #E67300;
+}
+
+/* Result Section */
+#improvements {
+    display: none; /* Initially hide the improvements div */
+}
+
+#result,
+#improvements {
+    background-color: rgba(26, 30, 43, 0.8);
+    border-radius: 25px;
+    padding: 20px;
+    margin-top: 20px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(7px);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.5;
+    word-wrap: break-word;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    min-height: 100px;
+    transition: min-height 0.3s ease;
+}
+
+#result.expanded {
+    min-height: 200px;
+}
+
+/* Modal styles */
+.modal {
+    position: fixed;
+    color: black;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    border-radius: 25px;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.modal-actions button {
+    margin-left: 10px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-actions button:first-child {
+    background-color: #f0f0f0;
+}
+
+.modal-actions button:last-child {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Additional Roast Prompt Styles */
+#additionalRoastPrompt {
+    text-align: center; 
+    margin-top: 50px; 
+    font-family: 'Montserrat', sans-serif;
+}
+
+#additionalRoastPrompt p {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+#additionalRoastPrompt button {
+    background-color: #FA8714;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 15px;
+    padding: 15px 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 50px;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+/* Footer styles */
+.footer {
+    margin-top: auto;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.footer-text {
+    margin: 5px 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+}
+
+.footer-link {
+    color: #FA8714;
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+.footer-logo {
+    height: 20px;
+    vertical-align: middle;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    body {
+        font-size: 16px;
+    }
+
+    .input-group {
+        width: 100%;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    button {
+        font-size: 18px;
+        padding: 10px 20px;
+    }
+}

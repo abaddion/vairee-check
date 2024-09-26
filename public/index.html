@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume ReadCheck</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div id="visitor-count-container">
+        <span id="visitor-count">total resumes checked: <span id="count">loading...</span></span>
+    </div>
+    <h1>Resume <span class="orange">Read</span>Check</span></h1>
+    <div class="input-group">
+        <label for="resume">Upload your resume (PDF, DOC, or DOCX):</label>
+        <input type="file" id="resume" accept=".pdf,.doc,.docx">
+    </div>
+    <button onclick="checkResume()">Check My Resume</button>
+    <div id="result"></div>
+    <button onclick="improveResume()" style="display:none;">Improve My Resume</button>
+    <div id="improvements" style="display:none;"></div>
+
+    <div id="privacyModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h2>We Value Your Privacy!</h2>
+            <p>Our app is designed to ensure your data remains secure. We do not store any personal information, files, or session data. Uploaded resumes are used only to generate responses with ChatGPT and <b>are not saved or shared</b>. Once the response is generated, all data is immediately discarded. By continuing, you agree with the process and with the <a href="https://openai.com/policies/privacy-policy" class="footer-link" target="_blank" rel="noopener noreferrer">ChatGPT privacy policy</a></p>
+            <button onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <span class="footer-text">powered by</span>
+            <a href="https://www.vairee.ai" class="footer-link" target="_blank" rel="noopener noreferrer">
+                <img src="images/vairee-logo.png" alt="vairee logo" class="footer-logo">
+            </a>
+        </div>
+        <p class="footer-text">©2024 | all rights reserved | created by <a href="https://www.linkedin.com/in/barushbalazikova/" class="footer-link" target="_blank" rel="noopener noreferrer">Barush Jensik</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
