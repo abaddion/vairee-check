@@ -6,6 +6,8 @@
     <title>Resume ReadCheck</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
     <div id="visitor-count-container">
@@ -42,6 +44,17 @@
    </ul>
    <p><strong>Don't miss out on this opportunity—give <a href="https://standoutcv.vairee.ai/" target="_blank">vairee</a> a try today and see how we can help you succeed!</strong></p>
             </div>
+        </div>
+    </div>
+
+    <div class="waiting-list-container">
+        <h3 onclick="toggleWaitingList()">Join Our Waiting List <span class="arrow">▼</span></h3>
+        <div id="waitingListContent" style="display:none;">
+            <form action="https://formspree.io/f/xwpegvoy" method="POST">
+                <input type="email" name="email" placeholder="Enter your email" required>
+                <div class="g-recaptcha" data-sitekey="6Lc2ZlAqAAAAAPA0GdlW3BM25FNHFbdy6ECoAraD"></div>
+                <button type="submit">Join Waiting List</button>
+            </form>
         </div>
     </div>
 

@@ -83,6 +83,23 @@ function toggleLearnMore() {
     }
 }
 
+function toggleWaitingList() {
+    const content = document.getElementById('waitingListContent');
+    const arrow = document.querySelector('.waiting-list-container h3 .arrow');
+    const h3 = document.querySelector('.waiting-list-container h3');
+    
+    content.classList.toggle('show');
+    arrow.style.transform = content.classList.contains('show') ? 'rotate(180deg)' : 'rotate(0deg)';
+    
+    if (content.classList.contains('show')) {
+        h3.firstChild.textContent = 'Hide Waiting List ';
+        content.style.display = 'block';
+    } else {
+        h3.firstChild.textContent = 'Join Our Waiting List ';
+        setTimeout(() => { content.style.display = 'none'; }, 300); // Match this to your transition time
+    }
+}
+
 function showModal() {
     document.getElementById('privacyModal').style.display = 'block';
 }

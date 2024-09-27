@@ -89,7 +89,8 @@ input[type="file"] {
 }
 
 /* Button Styles */
-button {
+button
+ {
     background-color: #FA8714;
     color: white;
     font-family: 'Montserrat', sans-serif;
@@ -110,10 +111,6 @@ button:hover {
     color: #E67300;
 }
 
-.orange {
-    color: #FA8714;
-}
-
 .important-note {
     background-color: #FA8714;
     color: white;
@@ -122,10 +119,11 @@ button:hover {
     border-radius: 15px 0px;
 }
 
-.learn-more-container {
+.learn-more-container,
+.waiting-list-container {
     width: 100%;
-    max-width: 600px; /* Match the max-width of #result */
-    margin: 20px auto; /* Center the container and add some vertical spacing */
+    max-width: 600px; 
+    margin: 20px auto; 
 }
 
 .learn-more-box {
@@ -165,7 +163,7 @@ button:hover {
 }
 
 #learnMoreContent.show {
-    max-height: 1000px; /* Adjust this value based on your content */
+    max-height: 1500px; /* Adjust this value based on your content */
 }
 
 #learnMoreContent p {
@@ -215,6 +213,64 @@ button:disabled {
 
 #result.expanded {
     min-height: 200px;
+}
+
+.waiting-list-container {
+    width: 100%;
+    max-width: 600px; 
+    margin: 20px auto;
+    background-color: white;
+    border-radius: 15px;
+    padding: 15px 0;
+}
+
+.waiting-list-container h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    margin: 20px;
+    color: #1A1E2B;
+    text-transform: uppercase;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+}
+
+.waiting-list-container h3 .arrow {
+    transition: transform 0.3s ease;
+    font-size: 0.8em;
+    margin-left: 5px;
+}
+
+#waitingListContent {
+    margin-top: 10px;
+    line-height: 1.6;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    max-height: 0;
+}
+
+#waitingListContent.show {
+    max-height: 500px; 
+}
+
+.waiting-list-container form {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.waiting-list-container input[type="email"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+}
+
+.g-recaptcha {
+    margin-bottom: 10px;
 }
 
 /* Modal styles */
