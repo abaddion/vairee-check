@@ -59,29 +59,32 @@ app.get('/visitor-count', async (req, res) => {
 });
 
 app.post('/analyze-resume', upload.single('resume'), async (req, res) => {
-  if (!req.file) {
-    return res.status(400).send('No file uploaded.');
-  }
-
   try {
-    let text = '';
-    if (req.file.mimetype === 'application/pdf') {
-      const pdfData = await PDFParser(req.file.buffer);
-      text = pdfData.text;
-    } else if (['application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'].includes(req.file.mimetype)) {
-      const result = await mammoth.extractRawText({ buffer: req.file.buffer });
-      text = result.value;
-    } else {
-      return res.status(400).send('Unsupported file type.');
-    }
+      let resumeContent = '';
 
-    if (!text.trim()) {
-      return res.json({ analysis: "I DID NOT RECEIVE ANY DATA. Obviously, I can not read your resume. The document might be protected or empty." });
-    }
+      if (req.file) {
+          if (req.file.mimetype === 'application/pdf') {
+              const pdfData = await PDFParser(req.file.buffer);
+              resumeContent = pdfData.text;
+          } else if (['application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'].includes(req.file.mimetype)) {
+              const result = await mammoth.extractRawText({ buffer: req.file.buffer });
+              resumeContent = result.value;
+          } else {
+              return res.status(400).send('Unsupported file type.');
+          }
+      }
 
-    const prompt = `Analyze the following resume:
+      if (req.body.resumeText) {
+          resumeContent += (resumeContent ? '\n\n' : '') + req.body.resumeText;
+      }
 
-${text}
+      if (!resumeContent.trim()) {
+          return res.status(400).send('No resume content provided.');
+      }
+
+      const prompt = `Analyze the following resume:
+
+      ${resumeContent}
 
 Provide a summary focusing on:
 1. Is the resume well-formatted in terms of styling?
@@ -97,17 +100,41 @@ const completion = await openai.chat.completions.create({
 });
 
 await incrementResumeCount();
-res.json({ analysis: completion.choices[0].message.content });
-} catch (error) {
-console.error(error);
-res.status(500).send('An error occurred while processing the resume.');
-}
+
+console.log('Analysis completed');
+        res.json({ analysis: completion.choices[0].message.content });
+
+    } catch (error) {
+        console.error('Error in /analyze-resume:', error);
+        res.status(500).send('An error occurred while processing the resume.');
+    }
 });
 
-app.post('/improve-resume', express.json(), async (req, res) => {
+app.post('/improve-resume', upload.single('resume'), async (req, res) => {
   try {
-    if (req.body.analysis.includes("I DID NOT RECEIVE ANY DATA")) {
-      return res.json({ improvements: "I cannot provide improvements because I couldn't read the original resume. Please ensure you upload a readable, unprotected document." });
+    let text = '';
+    if (req.file) {
+      // Handle file upload
+      if (req.file.mimetype === 'application/pdf') {
+        const pdfData = await PDFParser(req.file.buffer);
+        text = pdfData.text;
+      } else if (['application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'].includes(req.file.mimetype)) {
+        const result = await mammoth.extractRawText({ buffer: req.file.buffer });
+        text = result.value;
+      } else {
+        return res.status(400).send('Unsupported file type.');
+      }
+    } else if (req.body.resumeText) {
+      // Handle pasted text
+      text = req.body.resumeText;
+    } else {
+      return res.status(400).send('No resume content provided.');
+    }
+
+    const analysis = req.body.analysis;
+
+    if (!text.trim()) {
+      return res.json({ improvements: "I couldn't read any content from the resume. Please ensure you've uploaded a valid file or pasted text." });
     }
 
     const prompt = `Given the following resume analysis:

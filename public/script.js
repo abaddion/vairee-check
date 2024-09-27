@@ -2,16 +2,24 @@ let analysis = '';
 
 function checkResume() {
     const fileInput = document.getElementById('resume');
+    const textInput = document.getElementById('resumeText');
     const file = fileInput.files[0];
-    if (!file) {
-        alert('Please select a file');
+    const text = textInput.value.trim();
+
+    if (!file && !text) {
+        alert('Please either upload a file or paste your resume text.');
         return;
     }
 
     showModal();
 
     const formData = new FormData();
-    formData.append('resume', file);
+    if (file) {
+        formData.append('resume', file);
+    }
+    if (text) {
+        formData.append('resumeText', text);
+    }
 
     const checkButton = document.getElementById('checkResumeBtn');
     checkButton.textContent = 'Processing...';
@@ -21,7 +29,14 @@ function checkResume() {
         method: 'POST',
         body: formData
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            return response.text().then(text => {
+                throw new Error(text);
+            });
+        }
+        return response.json();
+    })
     .then(data => {
         document.getElementById('result').innerHTML = data.analysis;
         document.getElementById('improveResumeBtn').style.display = 'block';
@@ -30,7 +45,7 @@ function checkResume() {
     })
     .catch(error => {
         console.error('Error:', error);
-        document.getElementById('result').innerHTML = 'An error occurred while processing the resume.';
+        document.getElementById('result').innerHTML = 'An error occurred while processing the resume: ' + error.message;
     })
     .finally(() => {
         checkButton.textContent = 'Check My Resume';
@@ -39,16 +54,31 @@ function checkResume() {
 }
 
 function improveResume() {
+    const fileInput = document.getElementById('resume');
+    const textInput = document.getElementById('resumeText');
+    const file = fileInput.files[0];
+    const text = textInput.value.trim();
+
+    if (!file && !text) {
+        alert('Please either upload a file or paste your resume text before improving.');
+        return;
+    }
+
     const improveButton = document.getElementById('improveResumeBtn');
     improveButton.textContent = 'Processing...';
     improveButton.disabled = true;
 
+    const formData = new FormData();
+    if (file) {
+        formData.append('resume', file);
+    } else {
+        formData.append('resumeText', text);
+    }
+    formData.append('analysis', analysis);
+
     fetch('/improve-resume', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ analysis: analysis })
+        body: formData
     })
     .then(response => response.json())
     .then(data => {

@@ -15,9 +15,13 @@
     </div>
     <h1>Resume <span class="orange">READ</span>Check</span></h1>
     <h2>see how recruiters read your resume</h2>
+    
     <div class="input-group">
         <label for="resume">Upload your resume (PDF, DOC, or DOCX):</label>
         <input type="file" id="resume" accept=".pdf,.doc,.docx">
+        
+        <label for="resumeText" class="resume-text-label">Or paste your resume text here:</label>
+        <textarea id="resumeText" placeholder="Paste your resume text here if the document upload doesn't work..."></textarea>
     </div>
     <button id="checkResumeBtn" onclick="checkResume()">Check My Resume</button>
     <div id="result"></div>

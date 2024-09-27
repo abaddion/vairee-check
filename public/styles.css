@@ -68,16 +68,17 @@ h2 {
     max-width: 600px;
 }
 
-label {
+.input-group label {
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
     font-weight: 500;
     text-transform: uppercase;
     display: block;
     margin-bottom: 10px;
+    color: white;
 }
 
-input[type="file"] {
+.input-group input[type="file"] {
     width: calc(100% - 20px);
     padding: 10px;
     font-size: 18px;
@@ -86,6 +87,26 @@ input[type="file"] {
     margin-bottom: 10px;
     outline: none;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.resume-text-label {
+    margin-top: 20px;
+}
+
+#resumeText {
+    width: calc(100% - 20px);
+    height: 200px;
+    padding: 10px;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    border: none;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    background-color: white;
+    color: black;
+    resize: vertical;
 }
 
 /* Button Styles */
@@ -263,11 +284,17 @@ button:disabled {
 }
 
 .waiting-list-container input[type="email"] {
+    font-family: 'Montserrat', sans-serif;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 15px;
 }
+
+.waiting-list-container button:hover {
+    border: 1px solid #E67300;
+}
+
 
 .g-recaptcha {
     margin-bottom: 10px;
@@ -394,7 +421,9 @@ button:disabled {
     }
 
     .input-group,
-    .learn-more-container {
+    .learn-more-container,
+    .waiting-list-container
+     {
         width: 90%;
         padding: 10px;
     }
