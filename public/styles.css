@@ -3,7 +3,7 @@ body, h1, p, input, label, button {
     margin: 0;
     padding: 0;
     font-weight: normal;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Helvetica Neue', 'Montserrat', Arial, sans-serif;
 }
 
 /* Body Style */
@@ -57,6 +57,18 @@ h2 {
 }
 
 /* Input Group Styling */
+input[type="text"],
+input[type="email"],
+textarea {
+    appearance: none;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
 .input-group {
     background-color: rgba(26, 30, 43, 0.8);
     border-radius: 25px;
